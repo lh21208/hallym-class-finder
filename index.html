@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>강의실 찾기</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="classrooms.css">
+  <link rel="stylesheet" href="facilities.css">
+  <link rel="stylesheet" href="directory.css">
+  <link rel="stylesheet" href="map-navigation.css">
+  <script type="module" src="classrooms.js"></script>
+</head>
+<body>
+  <main class="map-main" style="padding-top:32px">
+    <section class="classroom" aria-labelledby="map-title">
+      <h1 id="map-title">강의실 찾기</h1>
+      <p class="intro">강의실 번호나 시설명을 검색하면 위치를 알려드려요.</p>
+      <form id="classroom-form" role="search">
+        <label class="sr-only" for="room-query">강의실 번호, 건물명 또는 시설명</label>
+        <div class="search-box"><input id="room-query" type="search" placeholder="강의실 번호, 건물명, 시설명" maxlength="60" enterkeyhint="search" autocomplete="off"><button class="room-submit" type="submit">검색</button></div>
+      </form>
+      <div class="room-result" role="status" aria-live="polite" aria-atomic="true"><h2 id="result-title"></h2><p id="result-detail"></p></div>
+      <button id="feedback-open" class="feedback-open" type="button" hidden>정보가 다른가요?</button>
+      <div class="examples" aria-label="예시 검색어"><span>검색 예시</span><button type="button" data-room="7109">7109</button><button type="button" data-room="식당">식당</button><button type="button" data-room="카페">카페</button><button type="button" data-room="복사실">복사실</button><button type="button" data-room="보건실">보건실</button></div>
+      <p id="facility-count" role="status" hidden></p>
+      <ul id="facility-results" aria-label="시설 검색 결과" hidden></ul>
+      <div class="map-tools" role="group" aria-label="지도 확대 및 축소" style="justify-content:flex-end">
+        <div class="map-buttons"><button id="map-out" type="button" aria-label="지도 축소" disabled>−</button><output id="map-scale" aria-label="지도 확대 비율">100%</output><button id="map-in" type="button" aria-label="지도 확대">+</button><button id="map-reset" type="button">전체 보기</button></div>
+      </div>
+      <div class="campus-map" tabindex="0" role="region" aria-label="캠퍼스 지도" aria-describedby="map-keyboard">
+        <div class="map-stage">
+        <img src="assets/campus-map.png" alt="한림대학교 캠퍼스 지도. 검색한 건물 위치는 지도 위 표시와 아래 검색 결과로 안내합니다." width="970" height="764">
+        <div id="map-pin" class="map-pin" hidden aria-hidden="true"><span id="pin-label"></span><i></i><b></b></div>
+        </div>
+      </div>
+      <p id="map-keyboard" class="sr-only">지도에 초점을 두고 더하기·빼기 키로 확대·축소, 방향키로 이동, Home 키로 전체 보기를 할 수 있습니다.</p>
+      <p class="map-note">건물 번호 + 층 + 호수 규칙으로 위치를 안내합니다. 실제 강의실 존재 여부는 확인되지 않았으며, 지하층 등 예외 표기는 아직 지원하지 않습니다.</p>
+      <p class="map-note">시설 안내는 한림대학교 캠퍼스맵과 제공된 상세 자료를 바탕으로 합니다. 층수 정보가 없는 시설은 건물까지만 안내합니다.</p>
+      <dialog id="feedback-dialog" class="feedback-dialog">
+        <form id="feedback-form" method="dialog">
+          <div class="feedback-heading"><h2>정보 오류 제보</h2><button id="feedback-close" type="button" aria-label="제보창 닫기">×</button></div>
+          <p id="feedback-context"></p>
+          <label for="feedback-details">어떤 정보가 다른가요?</label>
+          <textarea id="feedback-details" rows="4" maxlength="500" required placeholder="예: 건물 번호가 다르거나 시설이 다른 층에 있어요."></textarea>
+          <button class="feedback-submit" type="submit">구글 폼으로 제보하기</button>
+        </form>
+      </dialog>
+    </section>
+  </main>
+  <footer><p>이 사이트는 <strong>학생이 제작한 비공식 사이트</strong>이며,<br class="mobile-break"> 한림대학교 공식 홈페이지가 아닙니다.</p></footer>
+</body>
+</html>
+
