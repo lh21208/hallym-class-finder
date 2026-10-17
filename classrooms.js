@@ -189,7 +189,18 @@ photoBody.className = 'building-photo-body';
 const photoCredit = document.createElement('p');
 photoCredit.className = 'building-photo-credit';
 photoCredit.textContent = '사진 출처 · 한림대학교';
-buildingDialog.append(photoHeader,photoBody,photoCredit);
+const floorPicker=document.createElement('div');
+floorPicker.className='library-floor-picker';
+floorPicker.setAttribute('role','group');
+floorPicker.setAttribute('aria-label','도서관 층 선택');
+floorPicker.hidden=true;
+const photoLarge=document.createElement('a');
+photoLarge.className='building-photo-large';
+photoLarge.textContent='크게 보기 ↗';
+photoLarge.target='_blank';
+photoLarge.rel='noopener noreferrer';
+photoLarge.hidden=true;
+buildingDialog.append(photoHeader,floorPicker,photoBody,photoLarge,photoCredit);
 document.body.append(buildingDialog);
 photoClose.addEventListener('click',()=>buildingDialog.close());
 buildingDialog.addEventListener('click',event=>{
@@ -197,25 +208,59 @@ buildingDialog.addEventListener('click',event=>{
   const rect=buildingDialog.getBoundingClientRect();
   if(event.clientX<rect.left || event.clientX>rect.right || event.clientY<rect.top || event.clientY>rect.bottom) buildingDialog.close();
 });
+const libraryPlans=[
+  {label:'지하 1층',file:'B1.jpg'},
+  {label:'1층',file:'1F.jpg'},
+  {label:'2층',file:'2F.png'},
+  {label:'3층',file:'3F.jpg'},
+  {label:'4층',file:'4F.jpg'}
+];
 function openBuildingPhoto(building) {
   photoTitle.textContent=building.name;
-  const url=getBuildingPhoto(building.name);
-  const status=document.createElement('p');
-  status.setAttribute('role','status');
-  status.textContent=url ? '사진을 불러오는 중입니다.' : '등록된 건물 사진이 없습니다.';
-  photoBody.replaceChildren(status);
-  photoCredit.hidden=!url;
-  if(url) {
+  const isLibrary=building.number===17;
+  floorPicker.replaceChildren();
+  floorPicker.hidden=!isLibrary;
+  const exterior={label:'외관',url:getBuildingPhoto(building.name),alt:building.name+' 외관'};
+  const views=[exterior,...(isLibrary ? libraryPlans.map(p=>({label:p.label,url:'https://library.hallym.ac.kr/image/ko/local/guide/'+p.file,alt:'일송기념도서관 '+p.label+' 평면도'})) : [])];
+  function show(view) {
+    floorPicker.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.textContent===view.label)));
+    const status=document.createElement('p');
+    status.setAttribute('role','status');
+    status.textContent=view.url ? (view.label==='외관' ? '사진을 불러오는 중입니다.' : '평면도를 불러오는 중입니다.') : '등록된 건물 사진이 없습니다.';
+    photoBody.replaceChildren(status);
+    photoLarge.hidden=true;
+    photoCredit.hidden=!view.url;
+    photoCredit.textContent=view.label==='외관' ? '사진 출처 · 한림대학교' : '평면도 출처 · 한림대학교 일송기념도서관';
+    if(!view.url) return;
     const img=document.createElement('img');
-    img.alt=building.name+' 외관';
+    img.alt=view.alt;
     img.referrerPolicy='no-referrer';
     img.hidden=true;
-    img.addEventListener('load',()=>{status.hidden=true;img.hidden=false;});
-    img.addEventListener('error',()=>{img.hidden=true;status.hidden=false;status.textContent='사진을 불러오지 못했습니다.';});
-    img.src=url;
+    img.addEventListener('load',()=>{
+      if(!photoBody.contains(img))return;
+      status.hidden=true;img.hidden=false;
+      photoLarge.href=view.url;
+      photoLarge.setAttribute('aria-label',view.alt+' 크게 보기 (새 창)');
+      photoLarge.hidden=false;
+    });
+    img.addEventListener('error',()=>{
+      if(!photoBody.contains(img))return;
+      img.hidden=true;status.hidden=false;
+      status.textContent=view.label==='외관' ? '사진을 불러오지 못했습니다.' : '평면도를 불러오지 못했습니다. 잠시 후 다시 선택해 주세요.';
+    });
+    img.src=view.url;
     photoBody.append(img);
   }
-  buildingDialog.showModal();
+  if(isLibrary) for(const view of views){
+    const button=document.createElement('button');
+    button.type='button';
+    button.textContent=view.label;
+    button.setAttribute('aria-pressed','false');
+    button.addEventListener('click',()=>show(view));
+    floorPicker.append(button);
+  }
+  show(exterior);
+  if(!buildingDialog.open) buildingDialog.showModal();
 }
 
 const mapStage = document.querySelector('.map-stage');
