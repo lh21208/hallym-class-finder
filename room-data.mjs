@@ -1,3 +1,5 @@
+import {registeredRooms} from './registered-rooms.mjs';
+export {registeredRooms};
 const buildings = {
   '공학관': {number: 1, x: 13.61, y: 44.90},
   '인문2관': {number: 4, x: 34.23, y: 40.97},
@@ -31,6 +33,16 @@ export function getMapBuildings() {
 }
 export function findRoom(value) {
   const query = value.replace(/\s/g, '').replace(/호$/, '');
+  const registered = registeredRooms.filter(r => r.number && r.number.toLowerCase() === query.toLowerCase());
+  if (registered.length) {
+    const first = registered[0];
+    const name = Object.keys(buildings).find(key => buildings[key].number === first.buildingId);
+    const floorLabel = floor => /^b\d+$/i.test(floor) ? '지하 ' + floor.slice(1) + '층' : floor.replace(/f$/i, '층');
+    const locations = [...new Set(registered.map(r => r.building + ' · ' + floorLabel(r.floor)))];
+    return {name, ...buildings[name], registered: true, records: registered,
+      title: query + ' → ' + (locations.length === 1 ? name + ' · ' + floorLabel(first.floor) : '등록 위치 ' + locations.length + '개'),
+      detail: registered.map(r => r.building + ' · ' + floorLabel(r.floor) + (r.name ? ' · ' + r.name : '')).join('\n')};
+  }
   let room, name;
   const special = specialLocations[query.toLowerCase()];
   if (special) {
@@ -51,4 +63,3 @@ export function findRoom(value) {
   return {name, ...buildings[name], title: room ? `${query} → ${name} · ${room.floor}층` : name,
     detail: room ? `지도 ${buildings[name].number}번 건물 · 번호 규칙 기준` : `지도 ${buildings[name].number}번 건물에 위치를 표시했습니다.`};
 }
-
