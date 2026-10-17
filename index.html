@@ -23,7 +23,7 @@
         <div class="search-box"><input id="room-query" type="search" placeholder="강의실 번호, 건물명, 시설명" maxlength="60" enterkeyhint="search" autocomplete="off"><button class="room-submit" type="submit">검색</button></div>
       </form>
       <div class="room-result" role="status" aria-live="polite" aria-atomic="true"><h2 id="result-title"></h2><p id="result-detail"></p></div>
-      <button id="feedback-open" class="feedback-open" type="button" hidden>정보가 다른가요?</button>
+      <button id="feedback-open" class="feedback-open" type="button" hidden>정보가 다르거나 의견이 있나요?</button>
       <div class="examples" aria-label="예시 검색어"><span>검색 예시</span><button type="button" data-room="7109">7109</button><button type="button" data-room="식당">식당</button><button type="button" data-room="카페">카페</button><button type="button" data-room="복사실">복사실</button><button type="button" data-room="보건실">보건실</button></div>
       <p id="facility-count" role="status" hidden></p>
       <ul id="facility-results" aria-label="시설 검색 결과" hidden></ul>
@@ -42,6 +42,10 @@
       <div class="campus-map" tabindex="0" role="region" aria-label="캠퍼스 지도" aria-describedby="map-keyboard">
         <div class="map-stage">
         <img src="assets/campus-map.png" alt="한림대학교 캠퍼스 지도. 검색한 건물 위치는 지도 위 표시와 아래 검색 결과로 안내합니다." width="970" height="764">
+        <img class="map-number-retouch" src="assets/campus-map-hidden-markers.png" alt="" aria-hidden="true">
+        <img class="map-number-retouch map-number-retouch-34" src="assets/campus-map-hidden-markers.png" alt="" aria-hidden="true">
+        <img class="map-number-retouch map-number-retouch-36" src="assets/campus-map-hidden-markers.png" alt="" aria-hidden="true">
+        <img class="map-number-retouch map-number-retouch-38" src="assets/campus-map-hidden-markers.png" alt="" aria-hidden="true">
         <div id="map-pin" class="map-pin" hidden aria-hidden="true"><span id="pin-label"></span><i></i><b></b></div>
         </div>
       </div>
@@ -49,17 +53,17 @@
       </div>
       <p class="map-note">등록된 호실과 특수 시간표 표기를 기준으로 위치를 안내합니다.</p>
       <p class="map-note">시설 안내는 한림대학교 캠퍼스맵과 제공된 상세 자료를 바탕으로 합니다. 층수 정보가 없는 시설은 건물까지만 안내합니다.</p>
-      <dialog id="feedback-dialog" class="feedback-dialog">
+      <dialog id="feedback-dialog" class="feedback-dialog" aria-labelledby="feedback-title">
         <form id="feedback-form" method="dialog">
-          <div class="feedback-heading"><h2>정보 오류 제보</h2><button id="feedback-close" type="button" aria-label="제보창 닫기">×</button></div>
+          <div class="feedback-heading"><h2 id="feedback-title">오류 제보 · 피드백</h2><button id="feedback-close" type="button" aria-label="피드백 창 닫기">×</button></div>
           <p id="feedback-context"></p>
-          <label for="feedback-details">어떤 정보가 다른가요?</label>
-          <textarea id="feedback-details" rows="4" maxlength="500" required placeholder="예: 건물 번호가 다르거나 시설이 다른 층에 있어요."></textarea>
-          <button class="feedback-submit" type="submit">구글 폼으로 제보하기</button>
+          <label for="feedback-details">잘못된 정보나 개선 의견을 알려주세요.</label>
+          <textarea id="feedback-details" rows="4" maxlength="500" required placeholder="예: 시설 위치가 달라요. 이런 기능이 있으면 좋겠어요."></textarea>
+          <p id="feedback-submit-note" class="feedback-submit-note">다음 화면의 구글 폼에서 내용을 확인하고 ‘제출’을 눌러야 접수가 완료됩니다.</p>
+          <button class="feedback-submit" type="submit" aria-describedby="feedback-submit-note">구글 폼으로 이동</button>
         </form>
       </dialog>
     </section>
   </main>
-  <footer><p lang="en">Unofficial · Made by a Hallym student</p></footer>
 </body>
 </html>

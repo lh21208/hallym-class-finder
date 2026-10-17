@@ -6,4 +6,3 @@
 @media(prefers-reduced-motion:reduce){.search-box{transition:none}}
 
 .examples{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;column-gap:13px;margin-top:9px;color:#75818e;font-size:.8125rem}.examples>span{margin-right:5px;padding-right:16px;border-right:1px solid #dce3e9;line-height:1.1;color:var(--blue);font-weight:700;white-space:nowrap}.examples button{border:0;background:transparent;color:#526b83;font-size:.8125rem;min-height:44px;padding:8px 2px;cursor:pointer;text-underline-offset:4px}.examples button:hover{color:var(--blue);text-decoration:underline}.examples button:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:3px}@media(max-width:600px){.examples{column-gap:10px;font-size:.75rem}.examples button{font-size:.75rem}}
-

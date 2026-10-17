@@ -1,4 +1,5 @@
-// Source: https://uhdiro.vercel.app/ — retrieved 2026-10-17. Original records retained.
+// Source: https://uhdiro.vercel.app/ — retrieved 2026-10-17.
+// Selected room numbers corrected/completed against recovered campusmap floor diagrams on 2026-10-17.
 export const registeredRooms = [
   {
     "buildingId": 1,
@@ -823,7 +824,7 @@ export const registeredRooms = [
     "buildingId": 1,
     "building": "정보과학대학 (공학관)",
     "floor": "3f",
-    "number": "1357",
+    "number": "1367",
     "name": "무기소재 연구실"
   },
   {
@@ -1208,7 +1209,7 @@ export const registeredRooms = [
     "buildingId": 2,
     "building": "대학본부 인문1관",
     "floor": "2f",
-    "number": "2082",
+    "number": "2208",
     "name": "교무부처장"
   },
   {
@@ -1873,7 +1874,7 @@ export const registeredRooms = [
     "buildingId": 2,
     "building": "대학본부 인문1관",
     "floor": "6f",
-    "number": "2096",
+    "number": "2609",
     "name": "김명준 교수실"
   },
   {
@@ -3749,7 +3750,7 @@ export const registeredRooms = [
     "buildingId": 7,
     "building": "자연과학관",
     "floor": "4f",
-    "number": "7164",
+    "number": "7416",
     "name": "간호과학 실습실"
   },
   {
@@ -3826,7 +3827,7 @@ export const registeredRooms = [
     "buildingId": 7,
     "building": "자연과학관",
     "floor": "4f",
-    "number": "7404",
+    "number": "7405",
     "name": "강경화 교수실"
   },
   {
@@ -3994,20 +3995,6 @@ export const registeredRooms = [
     "buildingId": 7,
     "building": "자연과학관",
     "floor": "5f",
-    "number": "7601",
-    "name": "공정실습실 디스플레이"
-  },
-  {
-    "buildingId": 7,
-    "building": "자연과학관",
-    "floor": "5f",
-    "number": "7602",
-    "name": "전자융합 강의실"
-  },
-  {
-    "buildingId": 7,
-    "building": "자연과학관",
-    "floor": "5f",
     "number": "7504",
     "name": "이기원 교수실"
   },
@@ -4113,7 +4100,7 @@ export const registeredRooms = [
     "buildingId": 7,
     "building": "자연과학관",
     "floor": "6f",
-    "number": "7619-1",
+    "number": "7620",
     "name": "의과학연구소"
   },
   {
@@ -4885,13 +4872,6 @@ export const registeredRooms = [
     "floor": "4f",
     "number": "8411",
     "name": "암생물학 실험실"
-  },
-  {
-    "buildingId": 8,
-    "building": "생명과학관",
-    "floor": "5f",
-    "number": "8411-2",
-    "name": "공작실"
   },
   {
     "buildingId": 8,
@@ -5681,7 +5661,7 @@ export const registeredRooms = [
     "buildingId": 9,
     "building": "Campus Life Center (CLC)",
     "floor": "2f",
-    "number": "0202",
+    "number": "9202",
     "name": "열쇠점 한림사"
   },
   {
@@ -6094,7 +6074,7 @@ export const registeredRooms = [
     "buildingId": 9,
     "building": "Campus Life Center (CLC)",
     "floor": "4f",
-    "number": "9413",
+    "number": "9431",
     "name": "스카이"
   },
   {
@@ -6276,14 +6256,14 @@ export const registeredRooms = [
     "buildingId": 10,
     "building": "사회 경영 1관",
     "floor": "b1",
-    "number": "",
+    "number": "B108",
     "name": ""
   },
   {
     "buildingId": 10,
     "building": "사회 경영 1관",
     "floor": "b1",
-    "number": "",
+    "number": "B109",
     "name": ""
   },
   {
@@ -7214,13 +7194,6 @@ export const registeredRooms = [
     "buildingId": 13,
     "building": "사회 경영 2관",
     "floor": "1f",
-    "number": "13607",
-    "name": "멀티미디어지원실"
-  },
-  {
-    "buildingId": 13,
-    "building": "사회 경영 2관",
-    "floor": "1f",
     "number": "",
     "name": "BLUEPOT(블루포트) 카페"
   },
@@ -7676,13 +7649,6 @@ export const registeredRooms = [
     "buildingId": 13,
     "building": "사회 경영 2관",
     "floor": "6f",
-    "number": "13607",
-    "name": "멀티미디어지원실"
-  },
-  {
-    "buildingId": 13,
-    "building": "사회 경영 2관",
-    "floor": "6f",
     "number": "13609",
     "name": "신소영 교수실"
   },
@@ -7949,14 +7915,14 @@ export const registeredRooms = [
     "buildingId": 14,
     "building": "국제관",
     "floor": "5f",
-    "number": "",
+    "number": "14504",
     "name": "국제학부 강의실2"
   },
   {
     "buildingId": 14,
     "building": "국제관",
     "floor": "5f",
-    "number": "",
+    "number": "14505",
     "name": "국제학부 강의실3"
   },
   {
@@ -8978,13 +8944,6 @@ export const registeredRooms = [
     "buildingId": 22,
     "building": "산학협력관",
     "floor": "2f",
-    "number": "22412",
-    "name": "나노융합스쿨 대학원연구실"
-  },
-  {
-    "buildingId": 22,
-    "building": "산학협력관",
-    "floor": "2f",
     "number": "22201",
     "name": "산학협력단 행정실"
   },
@@ -9013,7 +8972,7 @@ export const registeredRooms = [
     "buildingId": 22,
     "building": "산학협력관",
     "floor": "2f",
-    "number": "22204",
+    "number": "22205",
     "name": "전시실"
   },
   {
@@ -9223,7 +9182,7 @@ export const registeredRooms = [
     "buildingId": 22,
     "building": "산학협력관",
     "floor": "4f",
-    "number": "22404",
+    "number": "22403",
     "name": "초연결 데이터센터"
   },
   {
@@ -9258,7 +9217,7 @@ export const registeredRooms = [
     "buildingId": 22,
     "building": "산학협력관",
     "floor": "5f",
-    "number": "225006-2",
+    "number": "22506-2",
     "name": "디디엑스"
   },
   {
@@ -9449,5 +9408,19 @@ export const registeredRooms = [
     "floor": "1f",
     "number": "",
     "name": ""
+  },
+  {
+    "buildingId": 2,
+    "building": "대학본부 인문1관",
+    "floor": "4f",
+    "number": "2437",
+    "name": "LAB실"
+  },
+  {
+    "buildingId": 2,
+    "building": "대학본부 인문1관",
+    "floor": "4f",
+    "number": "2439",
+    "name": "아문연 서고"
   }
 ];

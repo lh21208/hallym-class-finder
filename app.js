@@ -27,4 +27,3 @@ document.querySelectorAll('[data-query]').forEach((button) => {
     input.focus();
   });
 });
-

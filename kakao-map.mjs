@@ -33,7 +33,7 @@ function loadSdk() {
   return sdkPromise;
 }
 
-export function createKakaoView(buildings,onSelect) {
+export function createKakaoView(buildings,onSelect,onDeselect) {
   const campus=document.querySelector('#campus-panel');
   const panel=document.querySelector('#kakao-panel');
   const canvas=document.querySelector('#kakao-canvas');
@@ -41,12 +41,16 @@ export function createKakaoView(buildings,onSelect) {
   const campusButton=document.querySelector('#campus-view');
   const kakaoButton=document.querySelector('#kakao-view');
   let map, api, selected=null, loading=false;
+  let startedOnMarker=false;
+  canvas.addEventListener('pointerdown',event=>{
+    startedOnMarker=Boolean(event.target.closest('.kakao-building'));
+  },true);
   const markers=[];
-  function sync() {
+  function sync({recenter=true}={}) {
     if(!map || panel.hidden) return;
     map.relayout();
     const target=getBuildingCoordinates(selected);
-    map.setCenter(new api.LatLng(target?.lat ?? 37.8864,target?.lng ?? 127.7384));
+    if(recenter) map.setCenter(new api.LatLng(target?.lat ?? 37.8864,target?.lng ?? 127.7384));
     for(const item of markers) {
       const active=item.building.name===selected;
       item.button.setAttribute('aria-pressed',String(active));
@@ -70,7 +74,13 @@ export function createKakaoView(buildings,onSelect) {
       if(panel.hidden) return;
       map=new api.Map(canvas,{center:new api.LatLng(37.8864,127.7384),level:3});
       map.addControl(new api.ZoomControl(),api.ControlPosition.RIGHT);
+      api.event.addListener(map,'click',()=>{
+        if(startedOnMarker) return;
+        clearSelection();
+        onDeselect?.();
+      });
       for(const building of buildings) {
+        if([34,37].includes(building.number)) continue;
         const location=getBuildingCoordinates(building.name);
         if(!location) continue;
         const button=document.createElement('button');
@@ -106,5 +116,9 @@ export function createKakaoView(buildings,onSelect) {
   kakaoButton.addEventListener('click',showKakao);
   const observer=new ResizeObserver(()=>{if(map && !panel.hidden)sync();});
   observer.observe(canvas);
-  return {selectBuilding(name){selected=name;sync();}};
+  function clearSelection() {
+    selected=null;
+    sync({recenter:false});
+  }
+  return {selectBuilding(name){selected=name;sync();},clearSelection};
 }

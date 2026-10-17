@@ -8,4 +8,3 @@ export function zoomView(view, scale, anchor, target, width, height) {
   const ratio = next/view.scale;
   return clampView({scale:next,x:target.x-(anchor.x-view.x)*ratio,y:target.y-(anchor.y-view.y)*ratio},width,height);
 }
-

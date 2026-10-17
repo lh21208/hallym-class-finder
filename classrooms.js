@@ -1,5 +1,6 @@
 import {createKakaoView} from './kakao-map.mjs';
 import {getBuildingPhoto} from './building-photos.mjs';
+import {recoveredPlans} from './floor-plans.mjs';
 import {findRoom, getMapBuildings, registeredRooms} from './room-data.mjs';
 import {findFacilities, searchFacilities} from './facilities.mjs';
 import './map-navigation.js';
@@ -57,7 +58,7 @@ function renderSuggestions() {
     .sort((a, b) => {
       const aName = normalizeSuggestion(a.name);
       const bName = normalizeSuggestion(b.name);
-      return Number(bName.startsWith(term)) - Number(aName.startsWith(term)) || aName.length - bName.length || a.name.localeCompare(b.name, 'ko');
+      return Number(bName.startsWith(term)) - Number(aName.startsWith(term)) || a.name.localeCompare(b.name, 'ko', {numeric:true}) || a.detail.localeCompare(b.detail, 'ko', {numeric:true});
     })
     .slice(0, 6);
   if (!matches.length) return closeSuggestions();
@@ -93,7 +94,42 @@ function setActiveSuggestion(index) {
   options[activeSuggestion].scrollIntoView({block: 'nearest'});
 }
 let kakaoView;
+let activeRoomResult=null;
+const roomPlanButton=document.createElement('button');
+roomPlanButton.type='button';
+roomPlanButton.className='room-plan-open';
+roomPlanButton.hidden=true;
+document.querySelector('.room-result').append(roomPlanButton);
+function getRoomFloor(result) {
+  if(!result?.registered) return null;
+  const locations=new Set(result.records.map(r=>r.buildingId+'|'+r.floor));
+  if(locations.size!==1) return null;
+  const floor=result.records[0].floor;
+  return /^b\d+$/i.test(floor) ? '지하 '+floor.slice(1)+'층' : floor.replace(/f$/i,'층');
+}
+function updateRoomPlanButton(result) {
+  activeRoomResult=result;
+  const label=getRoomFloor(result);
+  const hasPlan=label && (result.number===17 ? libraryPlans : recoveredPlans[result.number] || []).some(p=>p.label===label);
+  roomPlanButton.hidden=!hasPlan;
+  if(hasPlan) {
+    roomPlanButton.textContent=label+' 도면 보기';
+    roomPlanButton.setAttribute('aria-label',result.name+' '+label+' 도면 보기');
+  }
+}
+roomPlanButton.addEventListener('click',()=>{
+  if(activeRoomResult && !roomPlanButton.hidden) openBuildingPhoto(activeRoomResult,getRoomFloor(activeRoomResult));
+});
+function clearMapSelection() {
+  pin.hidden=true;
+  document.querySelector('#pin-label').textContent='';
+  kakaoView?.clearSelection();
+}
+document.querySelector('.campus-map').addEventListener('click',event=>{
+  if(!event.target.closest('.map-hotspot')) clearMapSelection();
+});
 function showFacility(item) {
+  updateRoomPlanButton(null);
   document.querySelector('.campus-map').dispatchEvent(new Event('map-reset'));
   const building = item.building ? findRoom(item.building) : null;
   pin.hidden = !building;
@@ -113,6 +149,7 @@ function search() {
   const query = input.value.trim();
   feedbackOpen.hidden = !query;
   const result = findRoom(query);
+  updateRoomPlanButton(result);
   kakaoView?.selectBuilding(result?.name || null);
   const roomQuery = result?.registered || /^\d{4,5}호?$/.test(query.replace(/\s/g, ''));
   const matches = findFacilities(result && !roomQuery ? result.name : query);
@@ -182,7 +219,7 @@ photoTitle.id = 'building-photo-title';
 const photoClose = document.createElement('button');
 photoClose.type = 'button';
 photoClose.textContent = '×';
-photoClose.setAttribute('aria-label','건물 사진 닫기');
+photoClose.setAttribute('aria-label','건물 안내 닫기');
 photoHeader.append(photoTitle,photoClose);
 const photoBody = document.createElement('div');
 photoBody.className = 'building-photo-body';
@@ -192,7 +229,7 @@ photoCredit.textContent = '사진 출처 · 한림대학교';
 const floorPicker=document.createElement('div');
 floorPicker.className='library-floor-picker';
 floorPicker.setAttribute('role','group');
-floorPicker.setAttribute('aria-label','도서관 층 선택');
+floorPicker.setAttribute('aria-label','건물 층 선택');
 floorPicker.hidden=true;
 const photoLarge=document.createElement('a');
 photoLarge.className='building-photo-large';
@@ -215,14 +252,19 @@ const libraryPlans=[
   {label:'3층',file:'3F.jpg'},
   {label:'4층',file:'4F.jpg'}
 ];
-function openBuildingPhoto(building) {
+function openBuildingPhoto(building,initialFloor=null) {
   photoTitle.textContent=building.name;
   const isLibrary=building.number===17;
+  const plans=isLibrary
+    ? libraryPlans.map(p=>({label:p.label,url:'https://library.hallym.ac.kr/image/ko/local/guide/'+p.file,alt:'일송기념도서관 '+p.label+' 평면도'}))
+    : (recoveredPlans[building.number] || []).map(p=>({...p,alt:building.name+' '+p.label+' 안내도',recovered:true}));
   floorPicker.replaceChildren();
-  floorPicker.hidden=!isLibrary;
+  floorPicker.hidden=plans.length===0;
+  floorPicker.setAttribute('aria-label',building.name+' 층 선택');
   const exterior={label:'외관',url:getBuildingPhoto(building.name),alt:building.name+' 외관'};
-  const views=[exterior,...(isLibrary ? libraryPlans.map(p=>({label:p.label,url:'https://library.hallym.ac.kr/image/ko/local/guide/'+p.file,alt:'일송기념도서관 '+p.label+' 평면도'})) : [])];
+  const views=[exterior,...plans];
   function show(view) {
+    photoTitle.textContent=building.name+(view.label==='외관' ? '' : ' · '+view.label);
     floorPicker.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.textContent===view.label)));
     const status=document.createElement('p');
     status.setAttribute('role','status');
@@ -231,6 +273,9 @@ function openBuildingPhoto(building) {
     photoLarge.hidden=true;
     photoCredit.hidden=!view.url;
     photoCredit.textContent=view.label==='외관' ? '사진 출처 · 한림대학교' : '평면도 출처 · 한림대학교 일송기념도서관';
+    if(view.recovered){
+      photoCredit.textContent='2022년 안내도로 현재와 다를 수 있습니다.';
+    }
     if(!view.url) return;
     const img=document.createElement('img');
     img.alt=view.alt;
@@ -251,7 +296,7 @@ function openBuildingPhoto(building) {
     img.src=view.url;
     photoBody.append(img);
   }
-  if(isLibrary) for(const view of views){
+  if(plans.length) for(const view of views){
     const button=document.createElement('button');
     button.type='button';
     button.textContent=view.label;
@@ -259,12 +304,21 @@ function openBuildingPhoto(building) {
     button.addEventListener('click',()=>show(view));
     floorPicker.append(button);
   }
-  show(exterior);
+  show(plans.find(p=>p.label===initialFloor) || exterior);
   if(!buildingDialog.open) buildingDialog.showModal();
 }
 
 const mapStage = document.querySelector('.map-stage');
-for (const building of getMapBuildings().filter(item => ![36, 38].includes(item.number))) {
+function selectMapBuilding(building) {
+  const room=findRoom(input.value.trim());
+  const keepRoom=room?.registered && room.number===building.number;
+  if(!keepRoom) input.value=building.name;
+  closeSuggestions();
+  search();
+  openBuildingPhoto(building,keepRoom ? getRoomFloor(room) : null);
+}
+for (const building of getMapBuildings()) {
+  if ([34,36,37,38].includes(building.number)) continue;
   const hotspot = document.createElement('button');
   hotspot.type = 'button';
   hotspot.className = 'map-hotspot';
@@ -272,12 +326,7 @@ for (const building of getMapBuildings().filter(item => ![36, 38].includes(item.
   hotspot.style.top = building.y + '%';
   hotspot.setAttribute('aria-label', `${building.number}번 ${building.name}`);
   hotspot.title = `${building.number}번 ${building.name}`;
-  hotspot.addEventListener('pointerdown', event => event.stopPropagation());
-  hotspot.addEventListener('click', () => {
-    input.value = building.name;
-    search();
-    openBuildingPhoto(building);
-  });
+  hotspot.addEventListener('click', () => selectMapBuilding(building));
   mapStage.append(hotspot);
 }
 document.querySelector('#classroom-form').addEventListener('submit', event => {event.preventDefault();closeSuggestions();search();});
@@ -319,10 +368,6 @@ document.querySelector('#feedback-form').addEventListener('submit', event => {
   window.open(formUrl, '_blank', 'noopener');
   feedbackDialog.close();
 });
-kakaoView = createKakaoView(getMapBuildings().filter(b=>![36,38].includes(b.number)), building=>{
-  input.value=building.name;
-  search();
-  openBuildingPhoto(building);
-});
+kakaoView = createKakaoView(getMapBuildings(),selectMapBuilding,clearMapSelection);
 input.value = new URLSearchParams(location.search).get('q') || '';
 search();

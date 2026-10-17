@@ -5,6 +5,8 @@ const plus = document.querySelector('#map-in');
 const minus = document.querySelector('#map-out');
 const output = document.querySelector('#map-scale');
 const pointers = new Map();
+const origins = new Map();
+let suppressClick = false;
 let view = {scale:1,x:0,y:0};
 const size = () => ({width:map.clientWidth,height:map.clientHeight});
 function render() {
@@ -24,6 +26,7 @@ function zoom(factor, anchor) {
 }
 function reset() {
   pointers.clear();
+  origins.clear();
   map.classList.remove('is-dragging');
   view = {scale:1,x:0,y:0};
   render();
@@ -38,8 +41,12 @@ function pair(points) {
 }
 map.addEventListener('pointerdown', event => {
   if (event.pointerType==='mouse' && event.button!==0) return;
+  if (!pointers.size) suppressClick = false;
   pointers.set(event.pointerId,local(event));
-  map.setPointerCapture(event.pointerId);
+  origins.set(event.pointerId,local(event));
+  if (pointers.size >= 2) suppressClick = true;
+  // Keep a stationary building tap targeted at its button.
+  if (!event.target.closest('.map-hotspot')) map.setPointerCapture(event.pointerId);
   map.classList.add('is-dragging');
 });
 map.addEventListener('pointermove', event => {
@@ -47,6 +54,11 @@ map.addEventListener('pointermove', event => {
   const previous = [...pointers.values()];
   const last = pointers.get(event.pointerId);
   const current = local(event);
+  const origin = origins.get(event.pointerId);
+  if (Math.hypot(current.x-origin.x,current.y-origin.y)>8) {
+    suppressClick = true;
+    if (!map.hasPointerCapture(event.pointerId)) map.setPointerCapture(event.pointerId);
+  }
   pointers.set(event.pointerId,current);
   const {width,height} = size();
   if (pointers.size >= 2) {
@@ -57,11 +69,28 @@ map.addEventListener('pointermove', event => {
 });
 function release(event) {
   pointers.delete(event.pointerId);
+  origins.delete(event.pointerId);
   if (!pointers.size) map.classList.remove('is-dragging');
 }
-for (const event of ['pointerup','pointercancel','lostpointercapture']) map.addEventListener(event,release);
+for (const event of ['pointerup','pointercancel']) map.addEventListener(event,release);
+map.addEventListener('lostpointercapture',event=>{
+  if (event.target===map) release(event);
+});
+map.addEventListener('click',event=>{
+  if (suppressClick && event.detail!==0) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+},true);
 plus.addEventListener('click',()=>zoom(1.5));
 minus.addEventListener('click',()=>zoom(1/1.5));
+map.addEventListener('wheel',event=>{
+  if (!event.deltaY) return;
+  event.preventDefault();
+  const unit = event.deltaMode===1 ? 16 : event.deltaMode===2 ? map.clientHeight : 1;
+  const delta = Math.max(-100,Math.min(100,event.deltaY*unit));
+  zoom(Math.exp(-delta*0.0025),local(event));
+},{passive:false});
 document.querySelector('#map-reset').addEventListener('click',reset);
 map.addEventListener('map-reset',reset);
 map.addEventListener('keydown',event=>{
@@ -77,4 +106,3 @@ map.addEventListener('keydown',event=>{
 });
 new ResizeObserver(reset).observe(map);
 render();
-

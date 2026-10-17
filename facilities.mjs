@@ -91,13 +91,6 @@ export const facilities = [
   },
   {
     "category": "기타",
-    "name": "사전주차 정산기",
-    "location": "일송아트홀",
-    "phone": null,
-    "building": "일송아트홀"
-  },
-  {
-    "category": "기타",
     "name": "베리어프리 증명서 자동 발급기",
     "location": "CAMPUS LIFE CENTER 3층",
     "phone": null,
@@ -134,6 +127,6 @@ export function findFacilities(query) {
  if (!key) return [];
  const aliases = {'커피':'카페','우체국':'우편취급국','보건실':'보건진료소','증명서':'증명서','지에스':'gs25','학식':'학생식당','도서관':'일송기념도서관','복사':'복사실','상담':'카운슬링'};
  const term = Object.hasOwn(aliases,key) ? aliases[key] : key;
- return searchFacilities.filter(item => normalize(item.category+' '+item.name+' '+item.location).includes(term));
+ return searchFacilities.filter(item => normalize(item.category+' '+item.name+' '+item.location).includes(term))
+   .sort((a,b)=>a.name.localeCompare(b.name,'ko',{numeric:true}) || a.location.localeCompare(b.location,'ko',{numeric:true}));
 }
-
