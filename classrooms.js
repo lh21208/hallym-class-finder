@@ -1,4 +1,4 @@
-import {findRoom, getMapBuildings} from './room-data.mjs';
+import {findRoom, getMapBuildings, registeredRooms} from './room-data.mjs';
 import {findFacilities, searchFacilities} from './facilities.mjs';
 import './map-navigation.js';
 const input = document.querySelector('#room-query');
@@ -23,6 +23,7 @@ input.setAttribute('aria-expanded', 'false');
 
 const normalizeSuggestion = value => value.toLowerCase().replace(/[\s·()_-]/g, '');
 const suggestionSource = [
+  ...registeredRooms.filter(r => r.number).map(r => ({name:r.number, detail:r.building + ' · ' + (/^b/i.test(r.floor) ? '지하 ' + r.floor.slice(1) + '층' : r.floor.replace('f','층')) + (r.name ? ' · ' + r.name : ''), kind:'호실'})),
   ...getMapBuildings().map(item => ({name: item.name, detail: `${item.number}번 건물`, kind: '건물'})),
   {name: '인문1관', detail: '2번 건물 · 대학본부', kind: '건물'},
   {name: 'H', detail: '학생생활관 8관', kind: '시간표 표기'},
@@ -108,7 +109,7 @@ function search() {
   const query = input.value.trim();
   feedbackOpen.hidden = !query;
   const result = findRoom(query);
-  const roomQuery = /^\d{4,5}호?$/.test(query.replace(/\s/g, ''));
+  const roomQuery = result?.registered || /^\d{4,5}호?$/.test(query.replace(/\s/g, ''));
   const matches = findFacilities(result && !roomQuery ? result.name : query);
   const facilityMatches = matches.filter(item => item.kind !== 'building');
   const facilities = roomQuery ? facilityMatches.filter(item => item.roomCode === query.replace(/\s/g, '').replace(/호$/, '')) : facilityMatches;
@@ -159,7 +160,7 @@ function search() {
       }
       list.append(row);
     });
-    if (!result || roomQuery) showFacility(facilities[0]);
+    if (!result || (roomQuery && !result.registered)) showFacility(facilities[0]);
   }
   const url = new URL(location.href);
   if (query) url.searchParams.set('q', query); else url.searchParams.delete('q');
@@ -223,4 +224,3 @@ document.querySelector('#feedback-form').addEventListener('submit', event => {
 });
 input.value = new URLSearchParams(location.search).get('q') || '';
 search();
-
