@@ -1,3 +1,4 @@
+import {getBuildingPhoto} from './building-photos.mjs';
 import {findRoom, getMapBuildings, registeredRooms} from './room-data.mjs';
 import {findFacilities, searchFacilities} from './facilities.mjs';
 import './map-navigation.js';
@@ -166,6 +167,53 @@ function search() {
   if (query) url.searchParams.set('q', query); else url.searchParams.delete('q');
   history.replaceState(null, '', url);
 }
+
+const buildingDialog = document.createElement('dialog');
+buildingDialog.className = 'building-dialog';
+buildingDialog.setAttribute('aria-labelledby','building-photo-title');
+const photoHeader = document.createElement('div');
+photoHeader.className = 'building-photo-header';
+const photoTitle = document.createElement('h2');
+photoTitle.id = 'building-photo-title';
+const photoClose = document.createElement('button');
+photoClose.type = 'button';
+photoClose.textContent = '×';
+photoClose.setAttribute('aria-label','건물 사진 닫기');
+photoHeader.append(photoTitle,photoClose);
+const photoBody = document.createElement('div');
+photoBody.className = 'building-photo-body';
+const photoCredit = document.createElement('p');
+photoCredit.className = 'building-photo-credit';
+photoCredit.textContent = '사진 출처 · 한림대학교';
+buildingDialog.append(photoHeader,photoBody,photoCredit);
+document.body.append(buildingDialog);
+photoClose.addEventListener('click',()=>buildingDialog.close());
+buildingDialog.addEventListener('click',event=>{
+  if(event.target!==buildingDialog) return;
+  const rect=buildingDialog.getBoundingClientRect();
+  if(event.clientX<rect.left || event.clientX>rect.right || event.clientY<rect.top || event.clientY>rect.bottom) buildingDialog.close();
+});
+function openBuildingPhoto(building) {
+  photoTitle.textContent=building.name;
+  const url=getBuildingPhoto(building.name);
+  const status=document.createElement('p');
+  status.setAttribute('role','status');
+  status.textContent=url ? '사진을 불러오는 중입니다.' : '등록된 건물 사진이 없습니다.';
+  photoBody.replaceChildren(status);
+  photoCredit.hidden=!url;
+  if(url) {
+    const img=document.createElement('img');
+    img.alt=building.name+' 외관';
+    img.referrerPolicy='no-referrer';
+    img.hidden=true;
+    img.addEventListener('load',()=>{status.hidden=true;img.hidden=false;});
+    img.addEventListener('error',()=>{img.hidden=true;status.hidden=false;status.textContent='사진을 불러오지 못했습니다.';});
+    img.src=url;
+    photoBody.append(img);
+  }
+  buildingDialog.showModal();
+}
+
 const mapStage = document.querySelector('.map-stage');
 for (const building of getMapBuildings()) {
   const hotspot = document.createElement('button');
@@ -179,7 +227,7 @@ for (const building of getMapBuildings()) {
   hotspot.addEventListener('click', () => {
     input.value = building.name;
     search();
-    document.querySelector('#result-title').scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    openBuildingPhoto(building);
   });
   mapStage.append(hotspot);
 }
