@@ -43,23 +43,17 @@ export function findRoom(value) {
       title: query + ' → ' + (locations.length === 1 ? name + ' · ' + floorLabel(first.floor) : '등록 위치 ' + locations.length + '개'),
       detail: registered.map(r => r.building + ' · ' + floorLabel(r.floor) + (r.name ? ' · ' + r.name : '')).join('\n')};
   }
-  let room, name;
+  let name;
   const special = specialLocations[query.toLowerCase()];
   if (special) {
     name = Object.keys(buildings).find(key => buildings[key].number === special.number);
     return {name, ...buildings[name], title:special.title, detail:special.detail};
-  } else if (/^[1-9]\d{3,4}$/.test(query)) {
-    const number = Number(query.slice(0,-3));
-    const floor = Number(query.slice(-3,-2));
-    if (!floor || Number(query.slice(-2)) === 0) return null;
-    name = Object.keys(buildings).find(key => buildings[key].number === number);
-    room = {floor};
   } else {
     const key = normalize(query);
     name = Object.keys(buildings).find(item => normalize(item) === key);
     if (!name && Object.hasOwn(aliases,key)) name = Object.keys(buildings).find(item => buildings[item].number === aliases[key]);
   }
   if (!name) return null;
-  return {name, ...buildings[name], title: room ? `${query} → ${name} · ${room.floor}층` : name,
-    detail: room ? `지도 ${buildings[name].number}번 건물 · 번호 규칙 기준` : `지도 ${buildings[name].number}번 건물에 위치를 표시했습니다.`};
+  return {name, ...buildings[name], title: name,
+    detail: `지도 ${buildings[name].number}번 건물에 위치를 표시했습니다.`};
 }
