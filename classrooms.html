@@ -27,6 +27,15 @@
       <div class="examples" aria-label="예시 검색어"><span>검색 예시</span><button type="button" data-room="7109">7109</button><button type="button" data-room="식당">식당</button><button type="button" data-room="카페">카페</button><button type="button" data-room="복사실">복사실</button><button type="button" data-room="보건실">보건실</button></div>
       <p id="facility-count" role="status" hidden></p>
       <ul id="facility-results" aria-label="시설 검색 결과" hidden></ul>
+      <div class="map-switch" role="group" aria-label="지도 선택">
+        <button id="campus-view" type="button" aria-pressed="true" aria-controls="campus-panel">캠퍼스 지도</button>
+        <button id="kakao-view" type="button" aria-pressed="false" aria-controls="kakao-panel">카카오맵</button>
+      </div>
+      <section id="kakao-panel" aria-label="카카오맵" hidden>
+        <p id="kakao-status" role="status"></p>
+        <div id="kakao-canvas" aria-label="한림대학교 카카오 지도"></div>
+      </section>
+      <div id="campus-panel">
       <div class="map-tools" role="group" aria-label="지도 확대 및 축소" style="justify-content:flex-end">
         <div class="map-buttons"><button id="map-out" type="button" aria-label="지도 축소" disabled>−</button><output id="map-scale" aria-label="지도 확대 비율">100%</output><button id="map-in" type="button" aria-label="지도 확대">+</button><button id="map-reset" type="button">전체 보기</button></div>
       </div>
@@ -37,6 +46,7 @@
         </div>
       </div>
       <p id="map-keyboard" class="sr-only">지도에 초점을 두고 더하기·빼기 키로 확대·축소, 방향키로 이동, Home 키로 전체 보기를 할 수 있습니다.</p>
+      </div>
       <p class="map-note">등록된 호실과 특수 시간표 표기를 기준으로 위치를 안내합니다.</p>
       <p class="map-note">시설 안내는 한림대학교 캠퍼스맵과 제공된 상세 자료를 바탕으로 합니다. 층수 정보가 없는 시설은 건물까지만 안내합니다.</p>
       <dialog id="feedback-dialog" class="feedback-dialog">
