@@ -215,7 +215,7 @@ function openBuildingPhoto(building) {
 }
 
 const mapStage = document.querySelector('.map-stage');
-for (const building of getMapBuildings()) {
+for (const building of getMapBuildings().filter(item => ![36, 38].includes(item.number))) {
   const hotspot = document.createElement('button');
   hotspot.type = 'button';
   hotspot.className = 'map-hotspot';
