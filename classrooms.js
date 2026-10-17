@@ -119,8 +119,8 @@ function search() {
   count.hidden = !facilities.length;
   count.textContent = `시설 검색 결과 ${facilities.length}개 · 선택하면 위치를 안내합니다.`;
   pin.hidden = !result;
-  document.querySelector('#result-title').textContent = result?.title || (query ? '번호 또는 건물명을 확인해 주세요' : '강의실 번호를 입력해 주세요');
-  document.querySelector('#result-detail').textContent = result?.detail || (query ? '강의실 번호, 건물명 또는 시설명으로 검색해 보세요. 예: 식당, 복사실, 보건실. 지하층·예외 강의실 표기는 아직 지원하지 않습니다.' : '예: 7109 → 자연과학관 1층. 식당·카페 같은 시설명으로도 찾을 수 있어요.');
+  document.querySelector('#result-title').textContent = result?.title || (query ? '등록된 정보를 찾지 못했습니다' : '강의실 번호를 입력해 주세요');
+  document.querySelector('#result-detail').textContent = result?.detail || (query ? '등록된 강의실 번호, 건물명 또는 시설명으로 검색해 보세요. 예: 식당, 복사실, 보건실.' : '예: 7109 → 자연과학관 1층. 식당·카페 같은 시설명으로도 찾을 수 있어요.');
   if (result) {
     pin.style.left = result.x + '%';
     pin.style.top = result.y + '%';
