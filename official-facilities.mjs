@@ -921,16 +921,6 @@ export const officialFacilities = [
     "kind": "building"
   },
   {
-    "building": "씨름장",
-    "location": "씨름장",
-    "phone": null,
-    "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
-    "sourceDate": "2026-09-09",
-    "name": "씨름장",
-    "category": "건물·장소",
-    "kind": "building"
-  },
-  {
     "building": "온실",
     "location": "온실",
     "phone": null,
@@ -979,16 +969,5 @@ export const officialFacilities = [
     "name": "풋살장",
     "category": "건물·장소",
     "kind": "building"
-  },
-  {
-    "building": "테니스장",
-    "location": "테니스장",
-    "phone": null,
-    "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
-    "sourceDate": "2026-09-09",
-    "name": "테니스장",
-    "category": "건물·장소",
-    "kind": "building"
   }
 ];
-
