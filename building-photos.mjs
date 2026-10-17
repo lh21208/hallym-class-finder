@@ -85,7 +85,7 @@ export const buildingPhotos = [
     "name": "국제관"
   },
   {
-    "url": "https://www.hallym.ac.kr/sites/hallym/atchmnfl/campusMap//thumbnail/temp_1789711878238100.png",
+    "url": "https://www.hallym.ac.kr/sites/1318center/images/photo1_1.jpg",
     "name": "국제회의관"
   },
   {
