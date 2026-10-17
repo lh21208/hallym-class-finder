@@ -12,7 +12,7 @@ export const officialFacilities = [
   },
   {
     "building": "공학관",
-    "location": "공학관 · 층수 정보 미제공",
+    "location": "공학관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -22,7 +22,7 @@ export const officialFacilities = [
   },
   {
     "building": "공학관",
-    "location": "공학관 · 층수 정보 미제공",
+    "location": "공학관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -42,7 +42,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -52,7 +52,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -62,7 +62,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -72,7 +72,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -82,7 +82,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -92,7 +92,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -102,7 +102,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -112,7 +112,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -122,7 +122,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부·인문1관",
-    "location": "대학본부·인문1관 · 층수 정보 미제공",
+    "location": "대학본부·인문1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -142,7 +142,7 @@ export const officialFacilities = [
   },
   {
     "building": "일송기념도서관",
-    "location": "일송기념도서관 · 층수 정보 미제공",
+    "location": "일송기념도서관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -152,7 +152,7 @@ export const officialFacilities = [
   },
   {
     "building": "일송기념도서관",
-    "location": "일송기념도서관 · 층수 정보 미제공",
+    "location": "일송기념도서관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -162,7 +162,7 @@ export const officialFacilities = [
   },
   {
     "building": "일송기념도서관",
-    "location": "일송기념도서관 · 층수 정보 미제공",
+    "location": "일송기념도서관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -172,7 +172,7 @@ export const officialFacilities = [
   },
   {
     "building": "일송기념도서관",
-    "location": "일송기념도서관 · 층수 정보 미제공",
+    "location": "일송기념도서관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -182,7 +182,7 @@ export const officialFacilities = [
   },
   {
     "building": "일송기념도서관",
-    "location": "일송기념도서관 · 층수 정보 미제공",
+    "location": "일송기념도서관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -202,7 +202,7 @@ export const officialFacilities = [
   },
   {
     "building": "한림레크리에이션센터",
-    "location": "한림레크리에이션센터 · 층수 정보 미제공",
+    "location": "한림레크리에이션센터",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -212,7 +212,7 @@ export const officialFacilities = [
   },
   {
     "building": "한림레크리에이션센터",
-    "location": "한림레크리에이션센터 · 층수 정보 미제공",
+    "location": "한림레크리에이션센터",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -222,7 +222,7 @@ export const officialFacilities = [
   },
   {
     "building": "한림레크리에이션센터",
-    "location": "한림레크리에이션센터 · 층수 정보 미제공",
+    "location": "한림레크리에이션센터",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -242,7 +242,7 @@ export const officialFacilities = [
   },
   {
     "building": "사회·경영1관",
-    "location": "사회·경영1관 · 층수 정보 미제공",
+    "location": "사회·경영1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -252,7 +252,7 @@ export const officialFacilities = [
   },
   {
     "building": "사회·경영1관",
-    "location": "사회·경영1관 · 층수 정보 미제공",
+    "location": "사회·경영1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -262,7 +262,7 @@ export const officialFacilities = [
   },
   {
     "building": "사회·경영1관",
-    "location": "사회·경영1관 · 층수 정보 미제공",
+    "location": "사회·경영1관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -302,7 +302,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -312,7 +312,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -322,7 +322,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -332,7 +332,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -342,7 +342,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -352,7 +352,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -362,7 +362,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -372,7 +372,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -382,7 +382,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -392,7 +392,7 @@ export const officialFacilities = [
   },
   {
     "building": "Campus Life Center",
-    "location": "Campus Life Center · 층수 정보 미제공",
+    "location": "Campus Life Center",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -412,7 +412,7 @@ export const officialFacilities = [
   },
   {
     "building": "도헌글로벌스쿨",
-    "location": "도헌글로벌스쿨 · 층수 정보 미제공",
+    "location": "도헌글로벌스쿨",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -472,7 +472,7 @@ export const officialFacilities = [
   },
   {
     "building": "의학관",
-    "location": "의학관 · 층수 정보 미제공",
+    "location": "의학관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -492,7 +492,7 @@ export const officialFacilities = [
   },
   {
     "building": "인문 2관",
-    "location": "인문 2관 · 층수 정보 미제공",
+    "location": "인문 2관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -502,7 +502,7 @@ export const officialFacilities = [
   },
   {
     "building": "인문 2관",
-    "location": "인문 2관 · 층수 정보 미제공",
+    "location": "인문 2관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -512,7 +512,7 @@ export const officialFacilities = [
   },
   {
     "building": "인문 2관",
-    "location": "인문 2관 · 층수 정보 미제공",
+    "location": "인문 2관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -532,7 +532,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부별관",
-    "location": "대학본부별관 · 층수 정보 미제공",
+    "location": "대학본부별관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -542,7 +542,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부별관",
-    "location": "대학본부별관 · 층수 정보 미제공",
+    "location": "대학본부별관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -552,7 +552,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부별관",
-    "location": "대학본부별관 · 층수 정보 미제공",
+    "location": "대학본부별관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -562,7 +562,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부별관",
-    "location": "대학본부별관 · 층수 정보 미제공",
+    "location": "대학본부별관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -572,7 +572,7 @@ export const officialFacilities = [
   },
   {
     "building": "대학본부별관",
-    "location": "대학본부별관 · 층수 정보 미제공",
+    "location": "대학본부별관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -602,7 +602,7 @@ export const officialFacilities = [
   },
   {
     "building": "자연과학관",
-    "location": "자연과학관 · 층수 정보 미제공",
+    "location": "자연과학관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -612,7 +612,7 @@ export const officialFacilities = [
   },
   {
     "building": "자연과학관",
-    "location": "자연과학관 · 층수 정보 미제공",
+    "location": "자연과학관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -632,7 +632,7 @@ export const officialFacilities = [
   },
   {
     "building": "생명과학관",
-    "location": "생명과학관 · 층수 정보 미제공",
+    "location": "생명과학관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -642,7 +642,7 @@ export const officialFacilities = [
   },
   {
     "building": "생명과학관",
-    "location": "생명과학관 · 층수 정보 미제공",
+    "location": "생명과학관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -662,7 +662,7 @@ export const officialFacilities = [
   },
   {
     "building": "일송아트홀",
-    "location": "일송아트홀 · 층수 정보 미제공",
+    "location": "일송아트홀",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -682,7 +682,7 @@ export const officialFacilities = [
   },
   {
     "building": "창업보육센터",
-    "location": "창업보육센터 · 층수 정보 미제공",
+    "location": "창업보육센터",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -702,7 +702,7 @@ export const officialFacilities = [
   },
   {
     "building": "사회·경영2관",
-    "location": "사회·경영2관 · 층수 정보 미제공",
+    "location": "사회·경영2관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -722,7 +722,7 @@ export const officialFacilities = [
   },
   {
     "building": "국제관",
-    "location": "국제관 · 층수 정보 미제공",
+    "location": "국제관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -742,7 +742,7 @@ export const officialFacilities = [
   },
   {
     "building": "국제회의관",
-    "location": "국제회의관 · 층수 정보 미제공",
+    "location": "국제회의관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -752,7 +752,7 @@ export const officialFacilities = [
   },
   {
     "building": "국제회의관",
-    "location": "국제회의관 · 층수 정보 미제공",
+    "location": "국제회의관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -772,7 +772,7 @@ export const officialFacilities = [
   },
   {
     "building": "기초교육관",
-    "location": "기초교육관 · 층수 정보 미제공",
+    "location": "기초교육관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -872,7 +872,7 @@ export const officialFacilities = [
   },
   {
     "building": "학생생활관 8관",
-    "location": "학생생활관 8관 · 층수 정보 미제공",
+    "location": "학생생활관 8관",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
@@ -892,7 +892,7 @@ export const officialFacilities = [
   },
   {
     "building": "체육 기자재실",
-    "location": "체육 기자재실 · 층수 정보 미제공",
+    "location": "체육 기자재실",
     "phone": null,
     "sourceUrl": "https://www.hallym.ac.kr/campusMap/hallym/view.do",
     "sourceDate": "2026-09-09",
