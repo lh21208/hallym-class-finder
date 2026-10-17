@@ -1,3 +1,4 @@
+import {createKakaoView} from './kakao-map.mjs';
 import {getBuildingPhoto} from './building-photos.mjs';
 import {findRoom, getMapBuildings, registeredRooms} from './room-data.mjs';
 import {findFacilities, searchFacilities} from './facilities.mjs';
@@ -91,10 +92,12 @@ function setActiveSuggestion(index) {
   input.setAttribute('aria-activedescendant', options[activeSuggestion].id);
   options[activeSuggestion].scrollIntoView({block: 'nearest'});
 }
+let kakaoView;
 function showFacility(item) {
   document.querySelector('.campus-map').dispatchEvent(new Event('map-reset'));
   const building = item.building ? findRoom(item.building) : null;
   pin.hidden = !building;
+  kakaoView?.selectBuilding(building?.name || null);
   if (building) {
     pin.style.left = building.x + '%';
     pin.style.top = building.y + '%';
@@ -110,6 +113,7 @@ function search() {
   const query = input.value.trim();
   feedbackOpen.hidden = !query;
   const result = findRoom(query);
+  kakaoView?.selectBuilding(result?.name || null);
   const roomQuery = result?.registered || /^\d{4,5}호?$/.test(query.replace(/\s/g, ''));
   const matches = findFacilities(result && !roomQuery ? result.name : query);
   const facilityMatches = matches.filter(item => item.kind !== 'building');
@@ -269,6 +273,11 @@ document.querySelector('#feedback-form').addEventListener('submit', event => {
   formUrl.searchParams.set('entry.886237572', feedbackDetails.value.trim());
   window.open(formUrl, '_blank', 'noopener');
   feedbackDialog.close();
+});
+kakaoView = createKakaoView(getMapBuildings().filter(b=>![36,38].includes(b.number)), building=>{
+  input.value=building.name;
+  search();
+  openBuildingPhoto(building);
 });
 input.value = new URLSearchParams(location.search).get('q') || '';
 search();
